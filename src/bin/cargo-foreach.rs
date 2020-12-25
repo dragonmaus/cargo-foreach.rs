@@ -1,7 +1,7 @@
 use getopt::Opt;
 use std::{
-    fs,
-    io::ErrorKind,
+    fs::{self, DirEntry},
+    io::{self, ErrorKind},
     path::PathBuf,
     process::{Command, Stdio},
 };
@@ -62,8 +62,9 @@ fn program() -> program::Result {
     }
     let cmd = args.remove(0);
 
-    for entry in fs::read_dir(base)? {
-        let entry = entry?;
+    let mut entries = fs::read_dir(base)?.collect::<io::Result<Vec<DirEntry>>>()?;
+    entries.sort_unstable_by_key(|a| a.file_name());
+    for entry in entries {
         if !entry.path().is_dir() || !entry.path().join("Cargo.toml").exists() {
             continue;
         }
