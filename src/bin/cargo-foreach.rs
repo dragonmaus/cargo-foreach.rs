@@ -26,6 +26,10 @@ fn print_usage() {
 
 fn program() -> program::Result {
     let mut args = program::args();
+    // cargo passes all of its arguments unchanged to subcommands
+    if args[1] == "foreach" {
+        args.remove(1);
+    }
     let mut opts = getopt::Parser::new(&args, "C:hqv");
     let mut base = PathBuf::from(".");
     let mut quiet = false;
@@ -51,12 +55,12 @@ fn program() -> program::Result {
         return program::error(ErrorKind::NotFound, &format!("{:?}: not a directory", base));
     }
 
-    let mut cmd = args.split_off(opts.index());
-    if cmd.is_empty() {
+    let mut args = args.split_off(opts.index());
+    if args.is_empty() {
         eprintln!("{}", usage_line());
         return Ok(1);
     }
-    let args = cmd.split_off(1);
+    let cmd = args.remove(0);
 
     for entry in fs::read_dir(base)? {
         let entry = entry?;
@@ -68,7 +72,7 @@ fn program() -> program::Result {
             println!(">> {}", entry.file_name().to_string_lossy());
         }
 
-        let status = Command::new(cmd[0].to_string())
+        let status = Command::new(cmd.to_string())
             .args(&args)
             .current_dir(entry.path())
             .stderr(if quiet {

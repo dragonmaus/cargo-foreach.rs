@@ -1,6 +1,6 @@
 [package]
 name = "cargo-foreach"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["David Wildasin <dragonmaus@posteo.net>"]
 edition = "2018"
 description = "Run a command in all cargo projects in the current directory"
