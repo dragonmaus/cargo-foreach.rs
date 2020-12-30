@@ -11,4 +11,4 @@ publish = false
 
 [dependencies]
 getopt = "1"
-program = { git = "https://git.dragonma.us/dragonmaus/program.rs", version = "1.2" }
+program = { git = "https://git.dragonma.us/dragonmaus/program.rs", version = "2" }

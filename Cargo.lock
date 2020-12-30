@@ -10,11 +10,11 @@ dependencies = [
 
 [[package]]
 name = "getopt"
-version = "1.0.3"
+version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0896f7540f160b6f271ce25cc7076802de8bea22ec3b58a75f6670de81f98d4e"
+checksum = "285cb971bc8c03a00e74dd45a6b23bda02425336a6f23231fec898f796ac49a2"
 
 [[package]]
 name = "program"
-version = "1.2.0"
-source = "git+https://git.dragonma.us/dragonmaus/program.rs#b8faa88f8413868eb4d622266e1a0f181c425239"
+version = "2.0.0"
+source = "git+https://git.dragonma.us/dragonmaus/program.rs#5f4367cf8dba5e918d337af22d8d1d9fdb55872c"

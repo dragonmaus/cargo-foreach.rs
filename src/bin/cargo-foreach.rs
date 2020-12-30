@@ -8,15 +8,15 @@ use std::{
 
 program::main!("cargo-foreach");
 
-fn usage_line() -> String {
+fn usage_line(program_name: &str) -> String {
     format!(
         "Usage: {} [-h] [-qv] [-C DIR] command [args...]",
-        program::name("cargo-foreach")
+        program_name
     )
 }
 
-fn print_usage() {
-    println!("{}", usage_line());
+fn print_usage(program_name: &str) {
+    println!("{}", usage_line(program_name));
     println!("  -C DIR  switch to DIR before starting");
     println!("  -q      suppress command error output");
     println!("  -v      print directory names as they are processed");
@@ -24,7 +24,7 @@ fn print_usage() {
     println!("  -h      display this help");
 }
 
-fn program() -> program::Result {
+fn program(name: &str) -> program::Result {
     let mut args = program::args();
     // cargo passes all of its arguments unchanged to subcommands
     if args[1] == "foreach" {
@@ -43,7 +43,7 @@ fn program() -> program::Result {
                 Opt('q', None) => quiet = true,
                 Opt('v', None) => verbose = true,
                 Opt('h', None) => {
-                    print_usage();
+                    print_usage(name);
                     return Ok(0);
                 }
                 _ => unreachable!(),
@@ -52,12 +52,14 @@ fn program() -> program::Result {
     }
 
     if !base.is_dir() {
-        return program::error(ErrorKind::NotFound, &format!("{:?}: not a directory", base));
+        return Err(
+            io::Error::new(ErrorKind::NotFound, format!("{:?}: not a directory", base)).into(),
+        );
     }
 
     let mut args = args.split_off(opts.index());
     if args.is_empty() {
-        eprintln!("{}", usage_line());
+        eprintln!("{}", usage_line(name));
         return Ok(1);
     }
     let cmd = args.remove(0);
