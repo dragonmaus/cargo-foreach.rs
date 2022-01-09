@@ -11,4 +11,6 @@ publish = false
 
 [dependencies]
 getopt = "1"
-program = { git = "git://git.dragonma.us/rust/program" }
+
+[dependencies.program]
+git = "git://git.dragonma.us/rust/program"
