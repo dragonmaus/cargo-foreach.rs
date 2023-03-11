@@ -19,4 +19,4 @@ checksum = "ee1289e6cb1ae7c28a9b9776bd599f8afb31c20965ff257a8ea20eaa4da5e3c7"
 [[package]]
 name = "program"
 version = "1.0.0"
-source = "git+git://git.dragonma.us/rust/program#5d19738e79e77030b59035409c7e359b8f330262"
+source = "git+git://git.dragonma.us/rust/program#e228b3c69ce9ed768a595e900bb8a270fa271e8f"
