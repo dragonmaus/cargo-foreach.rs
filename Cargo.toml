@@ -1,8 +1,8 @@
 [package]
 name = "cargo-foreach"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["David Wildasin <dragonmaus@posteo.net>"]
-edition = "2018"
+edition = "2021"
 description = "Run a command in all cargo projects in the current directory"
 repository = "https://git.dragonma.us/rust/cargo-foreach"
 license = "BSD-3-Clause-Clear"
