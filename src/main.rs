@@ -45,7 +45,7 @@ fn program(name: &str) -> program::Result {
                 Opt('h', None) => {
                     print_usage(name);
                     return Ok(0);
-                }
+                },
                 _ => unreachable!(),
             },
         }
@@ -87,7 +87,7 @@ fn program(name: &str) -> program::Result {
             println!(">> {}", entry.file_name().to_string_lossy());
         }
 
-        let status = Command::new(cmd.to_string())
+        let status = Command::new(&cmd)
             .args(&args)
             .current_dir(entry.path())
             .stderr(if quiet {
