@@ -1,3 +1,5 @@
+extern crate getopt;
+
 use getopt::Opt;
 use std::{
     fs::{self, DirEntry},
